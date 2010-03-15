@@ -1,5 +1,5 @@
 //
-// StatusReporter.java
+// BitsPerSampleSamplesPerPixelMismatchMock.java
 //
 
 /*
@@ -20,25 +20,27 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
+package loci.formats.utests.tiff;
 
-package loci.formats;
+import java.io.IOException;
 
 /**
- * Interface for components capable of reporting status updates.
+ * @author callan
+ *
  *
  * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="https://skyking.microscopy.wisc.edu/trac/java/browser/trunk/components/bio-formats/src/loci/formats/StatusReporter.java">Trac</a>,
- * <a href="https://skyking.microscopy.wisc.edu/svn/java/trunk/components/bio-formats/src/loci/formats/StatusReporter.java">SVN</a></dd></dl>
+ * <dd><a href="https://skyking.microscopy.wisc.edu/trac/java/browser/trunk/components/bio-formats/test/loci/formats/utests/tiff/BitsPerSampleSamplesPerPixelMismatchMock.java">Trac</a>,
+ * <a href="https://skyking.microscopy.wisc.edu/svn/java/trunk/components/bio-formats/src/loci/formats/utests/tiff/BitsPerSampleSamplesPerPixelMismatchMock.java">SVN</a></dd></dl>
  */
-public interface StatusReporter {
+public class BitsPerSampleSamplesPerPixelMismatchMock extends RGBTiffMock {
 
-  /** Adds a listener for status update events. */
-  void addStatusListener(StatusListener l);
+  public BitsPerSampleSamplesPerPixelMismatchMock() throws IOException {
+    super();
+  }
 
-  /** Removes a listener for status update events. */
-  void removeStatusListener(StatusListener l);
-
-  /** Gets a list of all registered status update listeners. */
-  StatusListener[] getStatusListeners();
+  @Override
+  public short[] getBitsPerSample() {
+    return new short[] { 8, 8 };
+  }
 
 }

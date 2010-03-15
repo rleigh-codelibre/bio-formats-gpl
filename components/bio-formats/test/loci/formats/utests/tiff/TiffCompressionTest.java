@@ -1,5 +1,5 @@
 //
-// StatusListener.java
+// TiffCompression.java
 //
 
 /*
@@ -20,19 +20,33 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
+package loci.formats.utests.tiff;
 
-package loci.formats;
+import static org.testng.AssertJUnit.*;
+
+import org.testng.annotations.Test;
+
+import loci.common.enumeration.EnumException;
+import loci.formats.tiff.TiffCompression;
 
 /**
- * A listener for status updates.
+ * @author callan
+ *
  *
  * <dl><dt><b>Source code:</b></dt>
- * <dd><a href="https://skyking.microscopy.wisc.edu/trac/java/browser/trunk/components/bio-formats/src/loci/formats/StatusListener.java">Trac</a>,
- * <a href="https://skyking.microscopy.wisc.edu/svn/java/trunk/components/bio-formats/src/loci/formats/StatusListener.java">SVN</a></dd></dl>
+ * <dd><a href="https://skyking.microscopy.wisc.edu/trac/java/browser/trunk/components/bio-formats/test/loci/formats/utests/tiff/TiffCompression.java">Trac</a>,
+ * <a href="https://skyking.microscopy.wisc.edu/svn/java/trunk/components/bio-formats/test/loci/formats/utests/tiff/TiffCompression.java">SVN</a></dd></dl>
  */
-public interface StatusListener {
+public class TiffCompressionTest {
 
-  /** Called when status is updated. */
-  void statusUpdated(StatusEvent e);
-
+  @Test
+  public void testLookupUncompressed() {
+    TiffCompression pi = TiffCompression.get(1);
+    assertEquals(TiffCompression.UNCOMPRESSED, pi);
+  }
+  
+  @Test(expectedExceptions={ EnumException.class })
+  public void testUnknownCode() {
+    TiffCompression.get(-1);
+  }
 }
